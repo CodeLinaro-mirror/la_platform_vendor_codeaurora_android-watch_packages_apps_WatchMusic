@@ -1,5 +1,5 @@
 android_app {
-    name: "SnapdragonMusic",
+    name: "WatchMusic",
 
     sdk_version: "system_current",
 
@@ -18,7 +18,11 @@ android_app {
 
     resource_dirs: ["res"],
 
-    overrides: ["Music"],
+    overrides: [
+        "Music",
+        "SnapdragonMusic",
+    ],
+
     certificate: "platform",
     product_specific: true,
 
