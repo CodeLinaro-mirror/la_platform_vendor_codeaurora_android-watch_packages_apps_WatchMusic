@@ -609,7 +609,7 @@ public class TrackBrowserFragment extends Fragment implements
         f.addAction(MediaPlaybackService.META_CHANGED);
         f.addAction(MediaPlaybackService.QUEUE_CHANGED);
             mParentActivity.registerReceiver(mTrackListListener,
-                    new IntentFilter(f));
+                    new IntentFilter(f), Context.RECEIVER_EXPORTED);
             mTrackListListener.onReceive(mParentActivity, new Intent(
                     MediaPlaybackService.META_CHANGED));
     }

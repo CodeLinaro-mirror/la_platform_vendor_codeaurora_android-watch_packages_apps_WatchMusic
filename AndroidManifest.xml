@@ -21,8 +21,7 @@
     <original-package android:name="com.android.music"/>
 
     <!-- SDK Versions -->
-    <uses-sdk android:minSdkVersion="21"
-              android:targetSdkVersion="33"/>
+    <uses-sdk android:minSdkVersion="21"/>
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
@@ -38,7 +37,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <!-- App Declaration -->
     <application
         android:icon="@drawable/app_music"
@@ -289,6 +288,7 @@
         <activity android:name="com.android.music.ScanningProgress"
             android:theme="@android:style/Theme.Material.Light.Dialog" android:exported="false" />
         <service android:name="com.android.music.MediaPlaybackService"
+            android:foregroundServiceType="mediaPlayback"
             android:exported="false" />
 
         <receiver android:name="com.android.music.MediaAppWidgetProvider"

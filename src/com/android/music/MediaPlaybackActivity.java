@@ -768,7 +768,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
 
     public View.OnClickListener mPauseListener = new View.OnClickListener() {
         public void onClick(View v) {
-            if (MusicUtils.isForbidPlaybackInCall(MediaPlaybackActivity.this)){
+            if (MusicUtils.isForbidPlaybackInCall(MediaPlaybackActivity.this, true)){
                 return;
             }
             doPauseResume();
@@ -779,7 +779,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         public void onClick(View v) {
             if (mService == null)
                 return;
-            if (MusicUtils.isForbidPlaybackInCall(MediaPlaybackActivity.this)){
+            if (MusicUtils.isForbidPlaybackInCall(MediaPlaybackActivity.this, true)){
                 return;
             }
             sendIsRespondMessage(GO_PRE);
@@ -790,7 +790,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         public void onClick(View v) {
             if (mService == null)
                 return;
-            if (MusicUtils.isForbidPlaybackInCall(MediaPlaybackActivity.this)){
+            if (MusicUtils.isForbidPlaybackInCall(MediaPlaybackActivity.this, true)){
                 return;
             }
             sendIsRespondMessage(GO_NEXT);
@@ -1255,7 +1255,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         if (mService == null)
             return false;
 
-        if (MusicUtils.isForbidPlaybackInCall(this)){
+        if (MusicUtils.isForbidPlaybackInCall(this, true)){
             return false;
         }
 
@@ -1305,7 +1305,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
         if (mService == null)
             return false;
 
-        if (MusicUtils.isForbidPlaybackInCall(this)){
+        if (MusicUtils.isForbidPlaybackInCall(this, true)){
             return false;
         }
 
@@ -1332,7 +1332,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                     break;
                 }
                 if (mService != null) {
-                    if (MusicUtils.isForbidPlaybackInCall(this)){
+                    if (MusicUtils.isForbidPlaybackInCall(this, true)){
                         return false;
                     }
 
@@ -1359,7 +1359,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
                 }
 
                 if (mService != null) {
-                    if (MusicUtils.isForbidPlaybackInCall(this)){
+                    if (MusicUtils.isForbidPlaybackInCall(this, true)){
                         return false;
                     }
                     if (!mSeeking && mStartSeekPos >= 0) {
@@ -1460,7 +1460,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     }
 
     private void scanBackward(int repcnt, long delta) {
-        if (MusicUtils.isForbidPlaybackInCall(this)){
+        if (MusicUtils.isForbidPlaybackInCall(this, true)){
             return;
         }
 
@@ -1507,7 +1507,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     }
 
     private void scanForward(int repcnt, long delta) {
-        if (MusicUtils.isForbidPlaybackInCall(this)){
+        if (MusicUtils.isForbidPlaybackInCall(this, true)){
             return;
         }
 
@@ -1644,7 +1644,7 @@ public class MediaPlaybackActivity extends Activity implements MusicUtils.Defs,
     };
 
     private void startPlayback() {
-        if (MusicUtils.isForbidPlaybackInCall(this)){
+        if (MusicUtils.isForbidPlaybackInCall(this, true)){
             return;
         }
 

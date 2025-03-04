@@ -1043,7 +1043,7 @@ public class MusicUtils {
 
     private static void playAll(Context context, long[] list, int position,
             boolean force_shuffle) {
-        if (isForbidPlaybackInCall(context)) {
+        if (isForbidPlaybackInCall(context, true)) {
             return;
         }
         if (list.length == 0 || sService == null) {
@@ -2313,14 +2313,17 @@ public class MusicUtils {
                 || state == TelephonyManager.CALL_STATE_RINGING);
     }
 
-    public static boolean isForbidPlaybackInCall(Context context) {
+    public static boolean isForbidPlaybackInCall(Context context, boolean showToast) {
+        Log.d("MusicUtils", "isForbidPlaybackInCall showToast = " + showToast);
         if (context == null)
             return false;
 
         if (isTelephonyCallInProgress(context)) {
             Log.d("MusicUtils", "playAll  in a call");
             // Don't try to play music in a call begin from android Q.
-            Toast.makeText(context, R.string.cant_play_music_in_call, Toast.LENGTH_SHORT).show();
+            if (showToast) {
+                Toast.makeText(context, R.string.cant_play_music_in_call, Toast.LENGTH_SHORT).show();
+            }
             return true;
         }
 

@@ -38,6 +38,7 @@ import android.content.BroadcastReceiver;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 
@@ -367,7 +368,7 @@ public class MediaPlaybackService extends Service {
                     }
                     notifyChange(META_CHANGED);
                     notifyChange(PLAYSTATE_CHANGED);
-                    updateNotification();
+                    updateNotification(true);
                     setNextTrack();
                     break;
                 case TRACK_ENDED:
@@ -457,7 +458,7 @@ public class MediaPlaybackService extends Service {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (views != null && viewsLarge != null && status != null) {
-               updateNotification();
+               updateNotification(false);
             }
         }
     };
@@ -469,7 +470,7 @@ public class MediaPlaybackService extends Service {
             String cmd = intent.getStringExtra("command");
             MusicUtils.debugLog("mIntentReceiver.onReceive " + action + " / " + cmd);
 
-            if (MusicUtils.isForbidPlaybackInCall(context)){
+            if (MusicUtils.isForbidPlaybackInCall(context, true)){
                 return;
             }
 
@@ -637,8 +638,9 @@ public class MediaPlaybackService extends Service {
 
         mControlInStatusBar = getApplicationContext().getResources().getBoolean(R.bool.control_in_statusbar);
 
-        updateNotification();
-        startForeground(PLAYBACKSERVICE_STATUS, status);
+        updateNotification(false);
+        startForeground(PLAYBACKSERVICE_STATUS, status,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
 
     }
 
@@ -973,8 +975,9 @@ public class MediaPlaybackService extends Service {
             return START_STICKY;
         }
 
-        updateNotification();
-        startForeground(PLAYBACKSERVICE_STATUS, status);
+        updateNotification(false);
+        startForeground(PLAYBACKSERVICE_STATUS, status,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
 
         mServiceStartId = startId;
         mDelayedStopHandler.removeCallbacksAndMessages(null);
@@ -1139,7 +1142,7 @@ public class MediaPlaybackService extends Service {
                 String action = intent.getAction();
                 String cmd = intent.getStringExtra("command");
 
-                if (MusicUtils.isForbidPlaybackInCall(context)){
+                if (MusicUtils.isForbidPlaybackInCall(context, true)){
                     return;
                 }
 
@@ -1701,7 +1704,7 @@ public class MediaPlaybackService extends Service {
                 notifyChange(PLAYSTATE_CHANGED);
             }
 
-            updateNotification();
+            updateNotification(true);
 
         } else if (mPlayListLen <= 0) {
             // This is mostly so that if you press 'play' on a bluetooth headset
@@ -1727,7 +1730,8 @@ public class MediaPlaybackService extends Service {
             views.setOnClickPendingIntent(R.id.pause, pausePendingIntent);
             viewsLarge.setOnClickPendingIntent(R.id.pause, pausePendingIntent);
             status.flags = Notification.FLAG_ONGOING_EVENT;
-            startForeground(PLAYBACKSERVICE_STATUS, status);
+            startForeground(PLAYBACKSERVICE_STATUS, status,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
 
         }
     }
@@ -1740,7 +1744,7 @@ public class MediaPlaybackService extends Service {
         nm.cancel(PLAYBACKSERVICE_STATUS);
     }
 
-    private void updateNotification() {
+    private void updateNotification(boolean showToast) {
 
         views = new RemoteViews(getPackageName(), R.layout.statusbar_appwidget_s);
         viewsLarge = new RemoteViews(getPackageName(), R.layout.statusbar_appwidget_l);
@@ -1758,7 +1762,7 @@ public class MediaPlaybackService extends Service {
             viewsLarge.setImageViewBitmap(R.id.icon, icon);
         }
 
-        if (MusicUtils.isForbidPlaybackInCall(getApplicationContext()) == false){
+        if (MusicUtils.isForbidPlaybackInCall(getApplicationContext(), showToast) == false){
             Intent prevIntent = new Intent(PREVIOUS_ACTION);
             PendingIntent prevPendingIntent = PendingIntent.getBroadcast(this,
                     0 /* no requestCode */, prevIntent, PendingIntent.FLAG_IMMUTABLE);
@@ -1896,7 +1900,7 @@ public class MediaPlaybackService extends Service {
                 if (idle) {
                     gotoIdleState();
                 } else {
-                    updateNotification();
+                    updateNotification(true);
                 }
                 notifyChange(PLAYSTATE_CHANGED);
                 saveBookmarkIfNeeded();
