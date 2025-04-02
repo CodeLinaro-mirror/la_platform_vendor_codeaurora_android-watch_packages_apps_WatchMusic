@@ -131,6 +131,9 @@ public class MediaAppWidgetProvider extends AppWidgetProvider {
      */
     private boolean hasInstances(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        if (null == appWidgetManager) {
+            return false;
+        }
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(
                 new ComponentName(context, this.getClass()));
         return (appWidgetIds.length > 0);
