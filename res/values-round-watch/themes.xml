@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<resources>
+    <style name="CircularProgressBarTheme">
+        <item name="textMarginX">@dimen/size_30</item>
+        <item name="textMarginY">@dimen/size_20</item>
+        <item name="textColor">@color/album_text</item>
+        <item name="textSize">@dimen/progressbar_text_size</item>
+        <item name="stroke">@dimen/progressbar_stroke</item>
+        <item name="trackColor">@color/greycheck</item>
+        <item name="progressColor">@color/app_theme_color</item>
+    </style>
+</resources>

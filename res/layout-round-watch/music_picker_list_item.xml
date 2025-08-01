@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_2"
+    android:background="@drawable/song_item_bg"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingVertical="@dimen/size_20"
+    android:paddingHorizontal="@dimen/size_20">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/LargeTextStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/play_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_14"
+        android:layout_gravity="bottom"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/more"
+        android:src="@drawable/indicator_ic_mp_playing_list" />
+
+</LinearLayout>

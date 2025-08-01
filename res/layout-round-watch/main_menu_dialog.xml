@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/song_menu_bg"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/size_10">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/min_click_size"
+        android:id="@+id/action_equalizer"
+        android:background="@drawable/song_menu_item_bg"
+        android:paddingHorizontal="@dimen/size_16"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/equalizer_icon"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/snapdragon_equalizer"/>
+        <TextView
+            style="@style/AppMainMenuTextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/equalizer_icon"
+            android:text="@string/equalizer_button_text" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/min_click_size"
+        android:id="@+id/action_shuffle"
+        android:background="@drawable/song_menu_item_bg"
+        android:paddingHorizontal="@dimen/size_16"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/shuffle_icon"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/random"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/shuffle_icon"
+            style="@style/AppMainMenuTextAppearance"
+            android:id="@+id/shuffle_text"
+            android:text="@string/shuffle_all" />
+    </RelativeLayout>
+
+</LinearLayout>

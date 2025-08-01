@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.android.music.CircularTimeBarView
+            android:id="@+id/progress_bar"
+            style="@style/CircularProgressBarStyle"
+            android:theme="@style/CircularProgressBarTheme"
+            app:startAngle="54" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/LargeTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/mini_panel"
+            android:layout_marginBottom="@dimen/size_12"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/size_100" />
+
+        <LinearLayout
+            android:id="@+id/mini_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/player_control"
+            android:layout_marginBottom="@dimen/size_12"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/size_56">
+
+            <ImageView
+                android:id="@+id/repeat"
+                style="@style/SmallButtonStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/repeat_mode"
+                android:paddingVertical="@dimen/size_20" />
+
+            <ImageView
+                android:id="@+id/main_menu"
+                style="@style/SmallButtonStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/shuffle_mode"
+                android:paddingVertical="@dimen/size_20"
+                android:src="@drawable/ic_material_light_navigation_drawer" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/player_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/size_20">
+
+            <ImageView
+                android:id="@+id/btn_previous"
+                style="@style/ButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_marginHorizontal="@dimen/min_margin"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:contentDescription="@string/previous"
+                android:paddingVertical="@dimen/size_10"
+                android:src="@drawable/pre" />
+
+            <ImageView
+                android:id="@+id/btn_play_pause"
+                style="@style/ButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/large_button_height"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:contentDescription="@string/play_pause"
+                android:src="@drawable/play" />
+
+            <ImageView
+                android:id="@+id/btn_next"
+                style="@style/ButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_marginHorizontal="@dimen/min_margin"
+                android:layout_weight="1"
+                android:background="@drawable/button_bg"
+                android:contentDescription="@string/next"
+                android:paddingVertical="@dimen/size_10"
+                android:src="@drawable/nex" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/skip_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/player_control"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/size_12"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/size_56">
+
+            <TextView
+                android:id="@+id/seek_backward"
+                style="@style/SmallButtonStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/negative_ten_sec" />
+
+            <TextView
+                android:id="@+id/seek_forward"
+                style="@style/SmallButtonStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/positive_ten_sec" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bottom_sheet_bg"
+        android:orientation="vertical"
+        app:behavior_peekHeight="@dimen/bottom_peek_height"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <ImageView
+            android:id="@+id/list_icon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bottom_peek_height"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/bottom_sheet_icon"
+            android:src="@drawable/list_active"
+            app:tint="@color/whitecheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E5D0AC"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/size_6">
+
+            <androidx.wear.widget.WearableRecyclerView
+                android:id="@+id/song_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_3" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

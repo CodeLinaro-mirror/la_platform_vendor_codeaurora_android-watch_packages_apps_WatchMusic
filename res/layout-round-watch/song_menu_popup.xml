@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/song_menu_bg"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/size_10">
+
+    <TextView
+        android:id="@+id/action_play"
+        style="@style/AppPopMenuTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_click_size"
+        android:text="@string/play_all" />
+
+    <TextView
+        android:id="@+id/action_delete"
+        style="@style/AppPopMenuTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_click_size"
+        android:text="@string/delete_item" />
+
+    <TextView
+        android:id="@+id/action_ringtone"
+        style="@style/AppPopMenuTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_click_size"
+        android:text="@string/ringtone_menu" />
+
+    <TextView
+        android:id="@+id/action_share"
+        style="@style/AppPopMenuTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_click_size"
+        android:text="@string/share" />
+
+    <TextView
+        android:id="@+id/action_details"
+        style="@style/AppPopMenuTextAppearance"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/min_click_size"
+        android:text="@string/details" />
+</LinearLayout>

@@ -5,8 +5,11 @@ android_app {
 
     srcs: [
         "src/**/*.java",
+        "src/**/*.kt",
         "src/com/android/music/IMediaPlaybackService.aidl",
     ],
+
+    additional_manifests: ["roundwatch/AndroidManifest.xml"],
 
     static_libs: [
         "androidx-constraintlayout_constraintlayout",
@@ -14,6 +17,7 @@ android_app {
         "androidx.core_core",
         "androidx.media_media",
         "androidx.appcompat_appcompat",
+        "androidx.qti.wear"
     ],
 
     resource_dirs: ["res"],

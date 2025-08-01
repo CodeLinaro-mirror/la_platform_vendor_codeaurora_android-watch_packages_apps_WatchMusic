@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<resources>
+    <declare-styleable name="CircularTimeBarView">
+        <attr name="startAngle" format="float"/>
+        <attr name="stroke" format="dimension"/>
+        <attr name="trackColor" format="color"/>
+        <attr name="progressColor" format="color"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="textColor" format="dimension"/>
+        <attr name="textMarginX" format="dimension"/>
+        <attr name="textMarginY" format="dimension"/>
+    </declare-styleable>
+</resources>

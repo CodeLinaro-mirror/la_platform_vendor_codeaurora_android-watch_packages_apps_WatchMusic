@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<!-- ​Changes from Qualcomm Technologies, Inc. are provided under the following license:
+     Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+     SPDX-License-Identifier: BSD-3-Clause-Clear
+-->
+<resources>
+    <!-- dimens declarations -->
+    <dimen name="size_1">1dp</dimen>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_3">3dp</dimen>
+    <dimen name="size_4">4dp</dimen>
+    <dimen name="size_5">5dp</dimen>
+    <dimen name="size_6">6dp</dimen>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="size_12">12dp</dimen>
+    <dimen name="size_14">14dp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_24">24dp</dimen>
+    <dimen name="size_30">30dp</dimen>
+    <dimen name="size_48">48dp</dimen>
+    <dimen name="size_56">56dp</dimen>
+    <dimen name="size_60">60dp</dimen>
+    <dimen name="size_64">64dp</dimen>
+    <dimen name="size_70">70dp</dimen>
+    <dimen name="size_80">80dp</dimen>
+    <dimen name="size_90">90dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="size_200">200dp</dimen>
+
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_26">26sp</dimen>
+
+    <!-- Progressbar dimensions -->
+    <dimen name="progressbar_padding">@dimen/size_1</dimen>
+    <dimen name="progressbar_text_size">@dimen/text_size_18</dimen>
+    <dimen name="progressbar_stroke">@dimen/size_6</dimen>
+
+    <!-- BottomSheet dimensions   -->
+    <dimen name="bottom_sheet_corner_radius">@dimen/size_200</dimen>
+    <dimen name="bottom_peek_height">@dimen/size_60</dimen>
+    <dimen name="button_corner_radius">@dimen/size_10</dimen>
+
+    <!-- Common -->
+    <dimen name="min_click_size">@dimen/size_70</dimen>
+    <dimen name="min_margin">@dimen/size_4</dimen>
+    <dimen name="song_bg_radius">@dimen/size_200</dimen>
+    <dimen name="small_text_size">@dimen/text_size_26</dimen>
+
+    <!-- Button sizes -->
+    <dimen name="small_button_height">@dimen/min_click_size</dimen>
+    <dimen name="medium_button_height">@dimen/size_80</dimen>
+    <dimen name="large_button_height">@dimen/size_90</dimen>
+
+</resources>
