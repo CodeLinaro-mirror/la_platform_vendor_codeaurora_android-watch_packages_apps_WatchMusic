@@ -47,26 +47,26 @@
     </style>
 
     <style name="LargeTextStyle" parent="SingleLineTextStyle">
-        <item name="android:textSize">@dimen/text_size_26</item>
+        <item name="android:textSize">@dimen/text_size_13</item>
     </style>
 
     <style name="MediumTextStyle" parent="SingleLineTextStyle">
-        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
     </style>
 
     <style name="AppPopMenuTextAppearance" parent="@android:style/TextAppearance.Material.Menu">
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">@dimen/text_size_26</item>
-        <item name="android:paddingHorizontal">@dimen/size_16</item>
-        <item name="android:paddingVertical">@dimen/size_6</item>
+        <item name="android:textSize">@dimen/text_size_13</item>
+        <item name="android:paddingHorizontal">@dimen/size_8</item>
+        <item name="android:paddingVertical">@dimen/size_3</item>
         <item name="android:background">@drawable/song_menu_item_bg</item>
     </style>
 
     <style name="AppMainMenuTextAppearance" parent="@android:style/TextAppearance.Material.Menu">
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">@dimen/text_size_20</item>
-        <item name="android:paddingHorizontal">@dimen/size_16</item>
-        <item name="android:paddingVertical">@dimen/size_6</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:paddingHorizontal">@dimen/size_8</item>
+        <item name="android:paddingVertical">@dimen/size_3</item>
     </style>
 
     <style name="ButtonStyle" parent="AppTheme">

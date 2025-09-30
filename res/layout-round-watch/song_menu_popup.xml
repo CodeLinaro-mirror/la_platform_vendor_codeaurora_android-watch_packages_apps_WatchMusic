@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/song_menu_bg"
     android:orientation="vertical"
-    android:paddingVertical="@dimen/size_10">
+    android:paddingVertical="@dimen/size_5">
 
     <TextView
         android:id="@+id/action_play"

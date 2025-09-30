@@ -4,8 +4,8 @@
 -->
 <resources>
     <style name="CircularProgressBarTheme">
-        <item name="textMarginX">@dimen/size_30</item>
-        <item name="textMarginY">@dimen/size_20</item>
+        <item name="textMarginX">@dimen/size_15</item>
+        <item name="textMarginY">@dimen/size_10</item>
         <item name="textColor">@color/album_text</item>
         <item name="textSize">@dimen/progressbar_text_size</item>
         <item name="stroke">@dimen/progressbar_stroke</item>

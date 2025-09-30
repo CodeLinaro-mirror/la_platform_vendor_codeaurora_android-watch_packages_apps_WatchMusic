@@ -5,11 +5,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/size_2"
+    android:layout_marginBottom="@dimen/size_1"
     android:background="@drawable/song_item_bg"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:paddingStart="@dimen/size_20">
+    android:paddingStart="@dimen/size_10">
 
     <TextView
         android:id="@+id/title"
@@ -26,7 +26,7 @@
         android:layout_gravity="end"
         android:background="@android:color/transparent"
         android:contentDescription="@string/more"
-        android:paddingVertical="@dimen/size_24"
+        android:paddingVertical="@dimen/size_12"
         android:src="@drawable/ic_menu_moreoverflow_normal_holo_light" />
 
 </LinearLayout>

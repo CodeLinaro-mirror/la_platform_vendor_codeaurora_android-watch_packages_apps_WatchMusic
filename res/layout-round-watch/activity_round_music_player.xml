@@ -24,19 +24,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/mini_panel"
-            android:layout_marginBottom="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_6"
             android:gravity="center"
-            android:paddingHorizontal="@dimen/size_100" />
+            android:paddingHorizontal="@dimen/size_50" />
 
         <LinearLayout
             android:id="@+id/mini_panel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/player_control"
-            android:layout_marginBottom="@dimen/size_12"
+            android:layout_marginBottom="@dimen/size_6"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/size_56">
+            android:paddingHorizontal="@dimen/size_28">
 
             <ImageView
                 android:id="@+id/repeat"
@@ -44,7 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/repeat_mode"
-                android:paddingVertical="@dimen/size_20" />
+                android:paddingVertical="@dimen/size_10" />
 
             <ImageView
                 android:id="@+id/main_menu"
@@ -52,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/shuffle_mode"
-                android:paddingVertical="@dimen/size_20"
+                android:paddingVertical="@dimen/size_10"
                 android:src="@drawable/ic_material_light_navigation_drawer" />
         </LinearLayout>
 
@@ -63,7 +63,7 @@
             android:layout_centerInParent="true"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/size_20">
+            android:paddingHorizontal="@dimen/size_10">
 
             <ImageView
                 android:id="@+id/btn_previous"
@@ -74,7 +74,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_bg"
                 android:contentDescription="@string/previous"
-                android:paddingVertical="@dimen/size_10"
+                android:paddingVertical="@dimen/size_5"
                 android:src="@drawable/pre" />
 
             <ImageView
@@ -96,7 +96,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_bg"
                 android:contentDescription="@string/next"
-                android:paddingVertical="@dimen/size_10"
+                android:paddingVertical="@dimen/size_5"
                 android:src="@drawable/nex" />
         </LinearLayout>
 
@@ -106,9 +106,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/player_control"
             android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_6"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/size_56">
+            android:paddingHorizontal="@dimen/size_28">
 
             <TextView
                 android:id="@+id/seek_backward"
@@ -153,13 +153,13 @@
             android:layout_height="match_parent"
             android:background="#E5D0AC"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/size_6">
+            android:paddingHorizontal="@dimen/size_3">
 
             <androidx.wear.widget.WearableRecyclerView
                 android:id="@+id/song_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_3" />
+                android:layout_marginTop="@dimen/size_2" />
         </LinearLayout>
 
     </LinearLayout>
