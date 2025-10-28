@@ -63,10 +63,8 @@ class RoundMusicPlayerActivity : AppCompatActivity(), RoundSongsAdapter.ItemActi
     private lateinit var viewController: RoundMusicPlayerViewController
     private val deleteLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            Toast.makeText(this, "Song Deleted", Toast.LENGTH_SHORT)
-        }
+    ) { _ ->
+        viewController.loadSongs()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

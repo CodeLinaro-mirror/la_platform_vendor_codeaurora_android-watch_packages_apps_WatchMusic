@@ -40,6 +40,23 @@
         <item name="android:padding">@dimen/progressbar_padding</item>
     </style>
 
+    <style name="DialogTextStyle" parent="AppTheme">
+        <item name="android:maxLines">4</item>
+        <item name="android:ellipsize">middle</item>
+        <item name="android:textColor">#C4000000</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:minHeight">@dimen/size_50</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="DialogButtonStyle" parent="Widget.AppCompat.ButtonBar.AlertDialog">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">#DE000000</item>
+        <item name="android:textSize">@dimen/text_size_10</item>
+        <item name="android:background">@drawable/song_menu_bg</item>
+    </style>
+
     <style name="SingleLineTextStyle" parent="AppTheme">
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>

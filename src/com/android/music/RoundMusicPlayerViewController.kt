@@ -218,9 +218,7 @@ class RoundMusicPlayerViewController(private val context: Context) {
     }
 
     fun loadSongs() {
-        MusicUtils.getAllSongs(context)?.let {
-            songsIds = it
-        }
+        songsIds = MusicUtils.getAllSongs(context) ?: LongArray(0)
         val songsNames = songsIds.mapIndexed { index, value ->
             Song(
                 title = MusicUtils.getSongNameById(context, value), id = value, position = index
