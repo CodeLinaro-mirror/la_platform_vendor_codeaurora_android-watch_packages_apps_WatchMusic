@@ -31,6 +31,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.ServiceConnection
 import android.database.Cursor
+import android.media.AudioManager
 import android.os.IBinder
 import android.os.RemoteException
 import android.provider.MediaStore
@@ -117,6 +118,7 @@ class RoundMusicPlayerViewController(private val context: Context) {
             mService = null
         }
     }
+    private val mediaButtonIntentReceiver = MediaButtonIntentReceiver()
 
     init {
         val activity = context as? Activity
@@ -199,12 +201,21 @@ class RoundMusicPlayerViewController(private val context: Context) {
     }
 
     fun onStart() {
-        val f = IntentFilter()
-        f.addAction(MediaPlaybackService.PLAYSTATE_CHANGED)
-        f.addAction(MediaPlaybackService.META_CHANGED)
-        f.addAction(MediaPlaybackService.SHUFFLE_CHANGED)
-        f.addAction(MediaPlaybackService.REPEAT_CHANGED)
-        context.registerReceiver(mStatusListener, f, Context.RECEIVER_EXPORTED)
+        val statusFilter = IntentFilter()
+        statusFilter.addAction(MediaPlaybackService.PLAYSTATE_CHANGED)
+        statusFilter.addAction(MediaPlaybackService.META_CHANGED)
+        statusFilter.addAction(MediaPlaybackService.SHUFFLE_CHANGED)
+        statusFilter.addAction(MediaPlaybackService.REPEAT_CHANGED)
+        context.registerReceiver(mStatusListener, statusFilter, Context.RECEIVER_EXPORTED)
+
+        val mediaButtonIntentFilter = IntentFilter()
+        mediaButtonIntentFilter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
+        mediaButtonIntentFilter.addAction(Intent.ACTION_MEDIA_BUTTON)
+        context.registerReceiver(
+            mediaButtonIntentReceiver,
+            mediaButtonIntentFilter,
+            Context.RECEIVER_EXPORTED
+        )
         startRefresh()
     }
 
@@ -215,6 +226,7 @@ class RoundMusicPlayerViewController(private val context: Context) {
 
     fun onActivityDestroyed() {
         MusicUtils.unbindFromService(mServiceToken)
+        context.unregisterReceiver(mediaButtonIntentReceiver)
     }
 
     fun loadSongs() {
