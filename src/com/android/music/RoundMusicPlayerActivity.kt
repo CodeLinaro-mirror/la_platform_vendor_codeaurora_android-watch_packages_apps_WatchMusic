@@ -80,6 +80,7 @@ class RoundMusicPlayerActivity : AppCompatActivity(), RoundSongsAdapter.ItemActi
             insets
         }
         viewController = RoundMusicPlayerViewController(this)
+        viewController.onActivityCreated()
         initViews()
     }
 
