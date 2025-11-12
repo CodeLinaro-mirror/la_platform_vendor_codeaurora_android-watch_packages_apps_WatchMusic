@@ -54,12 +54,15 @@ import androidx.wear.widget.WearableRecyclerView
 import com.codeaurora.music.custom.PermissionActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
+import kotlin.math.abs
+
 class RoundMusicPlayerActivity : AppCompatActivity(), RoundSongsAdapter.ItemActionListener {
 
     private val requiredPermissions = arrayOf(
         permission.READ_PHONE_STATE, permission.READ_MEDIA_AUDIO, permission.POST_NOTIFICATIONS
     )
 
+    private var lastBottomSheetOff = 0f
     private lateinit var viewController: RoundMusicPlayerViewController
     private val deleteLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -185,14 +188,7 @@ class RoundMusicPlayerActivity : AppCompatActivity(), RoundSongsAdapter.ItemActi
         bottomSheetBehavior.addBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                        recyclerView.requestLayout()
-                    }
-
-                    BottomSheetBehavior.STATE_COLLAPSED -> {}
-                    else -> {}
-                }
+                // No operations.
             }
 
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
@@ -200,6 +196,20 @@ class RoundMusicPlayerActivity : AppCompatActivity(), RoundSongsAdapter.ItemActi
                 val maxRadius = resources.getDimension(R.dimen.bottom_sheet_corner_radius)
                 val currentRadius = maxRadius * (1 - slideOffset.coerceIn(0f, 1f))
                 bg.cornerRadius = currentRadius
+
+                // Request layout only when the offset is changed by a certain threshold.
+                // This is to avoid too many layout requests. Also request layout when the sheet is
+                // fully expanded or collapsed. This is to make sure that the recycler view is
+                // properly laid out when the sheet is fully expanded or collapsed.
+                if(
+                    abs(slideOffset - 0f) < EPSILON ||
+                    abs(slideOffset - 1f) < EPSILON ||
+                    abs(lastBottomSheetOff - slideOffset) >= BOTTOM_SHEET_SLIDE_THRESHOLD
+                ) {
+                    lastBottomSheetOff = slideOffset
+                    recyclerView.requestLayout()
+                }
+
             }
         })
 
@@ -422,6 +432,8 @@ class RoundMusicPlayerActivity : AppCompatActivity(), RoundSongsAdapter.ItemActi
 
     companion object {
         const val DISABLED_VIEW_ALPHA = 0.4f
+        const val BOTTOM_SHEET_SLIDE_THRESHOLD = 0.075f
+        const val EPSILON = 0.0001f
     }
 
 }
