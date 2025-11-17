@@ -42,10 +42,11 @@
 
     <style name="DialogTextStyle" parent="AppTheme">
         <item name="android:maxLines">4</item>
-        <item name="android:ellipsize">middle</item>
+        <!-- ellipsize middle would have been better but with multiple line texts only ellipsize
+        end works-->
+        <item name="android:ellipsize">end</item>
         <item name="android:textColor">#C4000000</item>
         <item name="android:textSize">@dimen/text_size_10</item>
-        <item name="android:minHeight">@dimen/size_50</item>
         <item name="android:textAlignment">center</item>
     </style>
 
@@ -68,6 +69,10 @@
     </style>
 
     <style name="MediumTextStyle" parent="SingleLineTextStyle">
+        <item name="android:textSize">@dimen/text_size_10</item>
+    </style>
+
+    <style name="MultiLineMediumTextStyle" parent="AppTheme">
         <item name="android:textSize">@dimen/text_size_10</item>
     </style>
 

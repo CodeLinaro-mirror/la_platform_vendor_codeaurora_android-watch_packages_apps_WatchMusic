@@ -17,7 +17,7 @@
      Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
      SPDX-License-Identifier: BSD-3-Clause-Clear
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="music_picker_title">Choose track</string>
 
     <string name="repeat_mode">Repeat mode</string>
@@ -34,5 +34,6 @@
     <string name="empty_list">List is empty</string>
     <string name="set_as_ringtone">%1$s set as ringtone</string>
     <string name="null_uri_selected_message">null uri selected</string>
+    <string name="delete_song_desc">Permanently delete ?\n<xliff:g id="song">%s</xliff:g>\</string>
 
 </resources>

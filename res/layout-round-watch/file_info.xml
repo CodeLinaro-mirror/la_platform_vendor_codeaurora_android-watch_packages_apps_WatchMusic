@@ -48,45 +48,53 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:text="@string/song_title" />
 
         <TextView
             android:id="@+id/song_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:padding="@dimen/size_5" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:text="@string/duration_title" />
 
         <TextView
             android:id="@+id/duration_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:padding="@dimen/size_5" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:text="@string/size_title" />
 
         <TextView
             android:id="@+id/size_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:padding="@dimen/size_5" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:text="@string/path_title" />
 
         <TextView
             android:id="@+id/path_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            style="@style/MultiLineMediumTextStyle"
             android:padding="@dimen/size_5" />
 
     </LinearLayout>
