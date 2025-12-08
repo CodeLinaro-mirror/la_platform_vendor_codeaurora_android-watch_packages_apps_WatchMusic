@@ -68,12 +68,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
         mWakeLock.acquire(3000);
 
         String intentAction = intent.getAction();
-        if (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(intentAction)) {
-            Intent i = new Intent(context, MediaPlaybackService.class);
-            i.setAction(MediaPlaybackService.SERVICECMD);
-            i.putExtra(MediaPlaybackService.CMDNAME, MediaPlaybackService.CMDPAUSE);
-            MusicUtils.startService(context, i);
-        } else if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
+        if (Intent.ACTION_MEDIA_BUTTON.equals(intentAction)) {
             KeyEvent event = (KeyEvent)
                     intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT, KeyEvent.class);
             

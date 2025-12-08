@@ -137,6 +137,7 @@ public class MediaPlaybackService extends Service {
     private static final String PLAYERSETTINGS_REQUEST = "org.codeaurora.music.playersettingsrequest";
     private static final String PLAYERSETTINGS_RESPONSE = "org.codeaurora.music.playersettingsresponse";
     private static final String SET_ADDRESSED_PLAYER = "org.codeaurora.music.setaddressedplayer";
+    private static final String NOISY_ACTION = AudioManager.ACTION_AUDIO_BECOMING_NOISY;
     private static final String EXTRA_SHUFFLE_VAL = "shuffle";
     private static final String EXTRA_REPEAT_VAL = "repeat";
     private static final String UPDATE_WIDGET_ACTION = "com.android.music.updatewidget";
@@ -485,7 +486,8 @@ public class MediaPlaybackService extends Service {
                 } else {
                     play();
                 }
-            } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)) {
+            } else if (CMDPAUSE.equals(cmd) || PAUSE_ACTION.equals(action)
+                     || NOISY_ACTION.equals(action)) {
                 pause();
                 mPausedByTransientLossOfFocus = false;
             } else if (EXIT_ACTION.equals(action)) {
@@ -522,6 +524,7 @@ public class MediaPlaybackService extends Service {
         commandFilter.addAction(NEXT_ACTION);
         commandFilter.addAction(PREVIOUS_ACTION);
         commandFilter.addAction(EXIT_ACTION);
+        commandFilter.addAction(NOISY_ACTION);
         registerReceiver(mIntentReceiver, commandFilter, Context.RECEIVER_EXPORTED);
     }
 
@@ -615,6 +618,7 @@ public class MediaPlaybackService extends Service {
         commandFilter.addAction(NEXT_ACTION);
         commandFilter.addAction(PREVIOUS_ACTION);
         commandFilter.addAction(EXIT_ACTION);
+        commandFilter.addAction(NOISY_ACTION);
         registerReceiver(mIntentReceiver, commandFilter, Context.RECEIVER_EXPORTED);
 
 
