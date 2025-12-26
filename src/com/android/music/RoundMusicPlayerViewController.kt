@@ -120,12 +120,6 @@ class RoundMusicPlayerViewController(private val context: Context) {
     }
     private val mediaButtonIntentReceiver = MediaButtonIntentReceiver()
 
-    init {
-        val activity = context as? Activity
-        activity?.let {
-           mServiceToken = MusicUtils.bindToService(activity, serviceConnection)
-        }
-    }
 
     private fun startRefresh() {
         refreshJob?.cancel()
@@ -213,6 +207,10 @@ class RoundMusicPlayerViewController(private val context: Context) {
 
     fun onStart() {
         val statusFilter = IntentFilter()
+        val activity = context as? Activity
+        activity?.let {
+            mServiceToken = MusicUtils.bindToService(activity, serviceConnection)
+        }
         statusFilter.addAction(MediaPlaybackService.PLAYSTATE_CHANGED)
         statusFilter.addAction(MediaPlaybackService.META_CHANGED)
         statusFilter.addAction(MediaPlaybackService.SHUFFLE_CHANGED)
