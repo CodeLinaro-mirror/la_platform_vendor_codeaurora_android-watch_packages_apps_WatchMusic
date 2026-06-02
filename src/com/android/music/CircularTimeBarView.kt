@@ -99,7 +99,7 @@ class CircularTimeBarView(
     private val blankText = context.getString(R.string.blank)
 
     // Data
-    private var progress = 90f
+    private var progress = 0f
     private var elapsedDuration = Duration.ZERO
     private var totalDuration = Duration.ZERO
     private var elapsedTimeText = blankText
