@@ -514,6 +514,7 @@ class RoundMusicPlayerViewController(private val context: Context) {
             _playerBoard.value = playerBoard.value?.copy(
                 songTitle = path,
                 duration = mDuration,
+                elapsedTime = mService?.position() ?: 0L,
                 hasTrackInfoUpdated = true
             )
         } catch (exc: RemoteException) {
