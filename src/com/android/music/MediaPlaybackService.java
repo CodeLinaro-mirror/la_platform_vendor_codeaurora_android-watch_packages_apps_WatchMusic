@@ -1706,6 +1706,14 @@ public class MediaPlaybackService extends Service {
             if (!mIsSupposedToBePlaying) {
                 mIsSupposedToBePlaying = true;
                 notifyChange(PLAYSTATE_CHANGED);
+                // Resuming from pause: mNextMediaPlayer was not initialized because
+                // onPrepared fired before playback started (isPlaying() was false).
+                // Re-trigger now that isPlaying() is true so the next track is ready.
+                // Only re-trigger if mNextMediaPlayer is not already set.
+                if (mPlayer.mNextMediaPlayer == null) {
+                    Log.i(LOGTAG, " play music and set next track.");
+                    setNextTrack();
+                }
             }
 
             updateNotification(true);
