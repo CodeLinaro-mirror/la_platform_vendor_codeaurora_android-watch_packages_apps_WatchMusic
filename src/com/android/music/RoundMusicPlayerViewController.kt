@@ -37,6 +37,7 @@ import android.os.RemoteException
 import android.provider.MediaStore
 import android.provider.MediaStore.Video.VideoColumns
 import android.util.Log
+import android.view.Choreographer
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -58,6 +59,10 @@ class RoundMusicPlayerViewController(private val context: Context) {
     // Service
     private var mService: IMediaPlaybackService? = null
     private var mServiceToken: MusicUtils.ServiceToken? = null
+
+    // Receiver registration state — guards against unregister before deferred register fires
+    private var statusListenerRegistered = false
+    private var mediaButtonReceiverRegistered = false
 
     // Coroutines
     private val lifeCycleScope = (context as? AppCompatActivity)?.lifecycleScope
@@ -118,7 +123,7 @@ class RoundMusicPlayerViewController(private val context: Context) {
             mService = null
         }
     }
-    private val mediaButtonIntentReceiver = MediaButtonIntentReceiver()
+    private val mediaButtonIntentReceiver by lazy { MediaButtonIntentReceiver() }
 
 
     private fun startRefresh() {
@@ -195,49 +200,70 @@ class RoundMusicPlayerViewController(private val context: Context) {
     }
 
     fun onActivityCreated() {
-        val mediaButtonIntentFilter = IntentFilter()
-        mediaButtonIntentFilter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
-        mediaButtonIntentFilter.addAction(Intent.ACTION_MEDIA_BUTTON)
-        context.registerReceiver(
-            mediaButtonIntentReceiver,
-            mediaButtonIntentFilter,
-            Context.RECEIVER_EXPORTED
-        )
+        val activity = context as? Activity ?: return
+        Choreographer.getInstance().postFrameCallback { _ ->
+            activity.window.decorView.post {
+                if (!activity.isFinishing && !activity.isDestroyed) {
+                    val mediaButtonIntentFilter = IntentFilter()
+                    mediaButtonIntentFilter.addAction(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
+                    mediaButtonIntentFilter.addAction(Intent.ACTION_MEDIA_BUTTON)
+                    mediaButtonReceiverRegistered = true
+                    context.registerReceiver(
+                        mediaButtonIntentReceiver,
+                        mediaButtonIntentFilter,
+                        Context.RECEIVER_EXPORTED
+                    )
+                }
+            }
+        }
     }
 
     fun onStart() {
-        val statusFilter = IntentFilter()
-        val activity = context as? Activity
-        activity?.let {
-            mServiceToken = MusicUtils.bindToService(activity, serviceConnection)
+        val activity = context as? Activity ?: return
+        Choreographer.getInstance().postFrameCallback { _ ->
+            activity.window.decorView.post {
+                if (activity.isFinishing || activity.isDestroyed) return@post
+                val statusFilter = IntentFilter()
+                statusFilter.addAction(MediaPlaybackService.PLAYSTATE_CHANGED)
+                statusFilter.addAction(MediaPlaybackService.META_CHANGED)
+                statusFilter.addAction(MediaPlaybackService.SHUFFLE_CHANGED)
+                statusFilter.addAction(MediaPlaybackService.REPEAT_CHANGED)
+                statusListenerRegistered = true
+                context.registerReceiver(mStatusListener, statusFilter, Context.RECEIVER_EXPORTED)
+                if (mServiceToken == null) {
+                    mServiceToken = MusicUtils.bindToService(activity, serviceConnection)
+                }
+            }
         }
-        statusFilter.addAction(MediaPlaybackService.PLAYSTATE_CHANGED)
-        statusFilter.addAction(MediaPlaybackService.META_CHANGED)
-        statusFilter.addAction(MediaPlaybackService.SHUFFLE_CHANGED)
-        statusFilter.addAction(MediaPlaybackService.REPEAT_CHANGED)
-        context.registerReceiver(mStatusListener, statusFilter, Context.RECEIVER_EXPORTED)
 
         startRefresh()
     }
 
     fun onStop() {
         stopRefresh()
-        context.unregisterReceiver(mStatusListener)
+        if (statusListenerRegistered) {
+            statusListenerRegistered = false
+            context.unregisterReceiver(mStatusListener)
+        }
     }
 
     fun onActivityDestroyed() {
         MusicUtils.unbindFromService(mServiceToken)
-        context.unregisterReceiver(mediaButtonIntentReceiver)
+        if (mediaButtonReceiverRegistered) {
+            mediaButtonReceiverRegistered = false
+            context.unregisterReceiver(mediaButtonIntentReceiver)
+        }
     }
 
     fun loadSongs() {
         songsIds = MusicUtils.getAllSongs(context) ?: LongArray(0)
-        val songsNames = songsIds.mapIndexed { index, value ->
+        _songs.value = songsIds.mapIndexed { i, id ->
             Song(
-                title = MusicUtils.getSongNameById(context, value), id = value, position = index
+                title = MusicUtils.getSongNameById(context, id) ?: "",
+                id = id,
+                position = i
             )
         }
-        _songs.value = songsNames
     }
 
     fun playSelected(position: Int) {
